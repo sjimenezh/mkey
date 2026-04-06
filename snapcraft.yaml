@@ -1,0 +1,30 @@
+name: mkey
+grade: stable
+adopt-info: mkey
+version: '1.0'
+summary: Copy mathematical symbols to the clipboard
+description: |
+  mkey lets you easily use mathematical symbols in any app by copying them as plain text. mkey includes some of the most common mathematical symbols.
+
+base: core24
+confinement: strict
+
+apps:
+  mkey:
+    extensions: [gnome]
+    command: usr/bin/mkey
+    common-id: com.serui.mkey.desktop
+
+parts:
+  mkey:
+    source: .
+    plugin: meson
+    meson-parameters:
+      - --prefix=/usr
+      - --buildtype=release
+
+slots:
+  gnome-text-editor:
+    interface: dbus
+    bus: session
+    name: com.serui.mkey
